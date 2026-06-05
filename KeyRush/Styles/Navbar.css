@@ -1,0 +1,77 @@
+/* Bootstrap navbar overrides */
+.navbar {
+    background-color: #12151f !important;
+    border-bottom: 1px solid #2d3148;
+    padding: 0.6rem 1.5rem;
+}
+
+.navbar-brand {
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.navbar-brand:hover {
+    color: #6c63ff !important;
+}
+.navbar-brand img {
+    border-radius: 6px;
+}
+
+.nav-link {
+    color: #94a3b8 !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem !important;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover {
+    color: #ffffff !important;
+    background: rgba(108,99,255,0.12);
+}
+.nav-link.active {
+    color: #6c63ff !important;
+}
+
+.dropdown-menu {
+    background: #1a1d2e;
+    border: 1px solid #2d3148;
+    border-radius: 8px;
+    padding: 0.4rem;
+    margin-top: 0.4rem;
+}
+.dropdown-item {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    padding: 0.45rem 0.9rem;
+    transition: background 0.15s, color 0.15s;
+}
+.dropdown-item:hover {
+    background: rgba(108,99,255,0.15);
+    color: #ffffff;
+}
+
+.btn-logout {
+    background: rgba(239,68,68,0.12) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239,68,68,0.25);
+    border-radius: 6px;
+    padding: 0.4rem 1rem !important;
+    font-size: 0.85rem;
+}
+.btn-logout:hover {
+    background: rgba(239,68,68,0.25) !important;
+    color: #fca5a5 !important;
+}
+
+.navbar-toggler {
+    border-color: #2d3148;
+}
+.navbar-toggler-icon {
+    filter: invert(0.6);
+}
