@@ -1,0 +1,178 @@
+.hero {
+    text-align: center;
+    padding: 74px 0 56px;
+    position: relative;
+}
+.hero h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 3.5rem;
+    line-height: 1.04;
+    letter-spacing: 0.01em;
+    margin: 0 0 1.6rem;
+    background: linear-gradient(180deg, #fff 0%, var(--yellow) 55%, var(--orange) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 26px rgba(255,122,20,.5)) drop-shadow(0 4px 0 rgba(120,52,4,.6));
+}
+.hero .subtitle {
+    color: var(--cream);
+    font-size: 1.2rem;
+    font-weight: 500;
+    max-width: 620px;
+    margin: 0 auto 2.4rem;
+}
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+a.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Press Start 2P', monospace;
+    border-radius: 12px;
+    padding: 19px 30px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.16s, box-shadow 0.16s, background 0.16s, color 0.16s, border-color 0.16s;
+}
+a.cta-btn.primary {
+    background: linear-gradient(135deg, var(--orange), var(--yellow));
+    color: var(--on-warm);
+    box-shadow: 0 0 0 1px rgba(255,209,30,.5), 0 10px 34px var(--glow-o), inset 0 1px 0 rgba(255,255,255,.4);
+}
+a.cta-btn.primary:hover {
+    color: var(--on-warm);
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px rgba(255,209,30,.7), 0 16px 44px var(--glow-o);
+}
+a.cta-btn.secondary {
+    background: rgba(194,242,58,.06);
+    color: var(--lime);
+    border: 2px solid rgba(194,242,58,.45);
+}
+a.cta-btn.secondary:hover {
+    color: var(--lime);
+    text-decoration: none;
+    transform: translateY(-3px);
+    background: rgba(194,242,58,.12);
+    border-color: var(--lime);
+    box-shadow: 0 0 26px var(--glow-l);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 1.5rem;
+}
+.feature-card {
+    background: linear-gradient(160deg, var(--surface), var(--bg2));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--line-2);
+    box-shadow: 0 18px 50px rgba(255,122,20,.22);
+}
+.feature-card:nth-child(2):hover {
+    box-shadow: 0 18px 50px rgba(194,242,58,.18);
+}
+.feature-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.45rem;
+    color: var(--cream);
+}
+.feature-card p {
+    color: var(--muted);
+    font-size: 0.98rem;
+    margin-bottom: 1.4rem;
+}
+a.feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    background: var(--orange);
+    color: var(--on-warm);
+    border-radius: 9px;
+    padding: 13px 18px;
+    text-decoration: none;
+    box-shadow: 0 6px 22px var(--glow-o);
+    transition: transform 0.16s, box-shadow 0.16s;
+}
+a.feature-link:hover {
+    color: var(--on-warm);
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+.feature-card:nth-child(2) a.feature-link {
+    background: var(--lime);
+    color: var(--on-lime);
+    box-shadow: 0 6px 22px var(--glow-l);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 1.5rem;
+}
+.stat-box {
+    background: linear-gradient(160deg, var(--surface), var(--bg2));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 30px;
+    text-align: center;
+}
+.stat-box .stat-label {
+    color: var(--muted);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+}
+.stat-box .stat-value {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 3.1rem;
+    line-height: 1;
+    color: var(--orange);
+    text-shadow: 0 0 26px var(--glow-o);
+}
+.stat-box:nth-child(2) .stat-value {
+    color: var(--lime);
+    text-shadow: 0 0 26px var(--glow-l);
+}
+
+.signin-prompt {
+    background: linear-gradient(135deg, rgba(255,122,20,.14), rgba(194,242,58,.06));
+    border: 1px solid var(--line-2);
+    border-radius: 22px;
+    padding: 2.8rem 2rem;
+    text-align: center;
+    margin-top: 1.5rem;
+}
+.signin-prompt p {
+    color: var(--muted);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .hero h1 { font-size: 2.5rem; }
+    .feature-grid, .stats-grid { grid-template-columns: 1fr; }
+}

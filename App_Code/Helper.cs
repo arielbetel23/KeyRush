@@ -7,31 +7,22 @@ using System.Data.SqlClient;
 
 public static class Helper 
 {
-    public const string DBName = "Database.mdf";   //Name of the MSSQL Database.
-    public const string tblName = "users";      // Name of the user Table in the Database
+    public const string DBName = "Database.mdf";
+    public const string tblName = "users";
     public const string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\"
-                                    + DBName + ";Integrated Security=True";   // The Data Base is in the App_Data = |DataDirectory|
+                                    + DBName + ";Integrated Security=True";
 
-    //public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
-    //public static string conString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
 
     public static DataSet RetrieveTable(string SQLStr)
-    // Gets A table from the data base acording to the SELECT Command in SQLStr;
-    // Returns DataSet with the Table.
     {
-        // connect to DataBase
         SqlConnection con = new SqlConnection(conString);
 
-        // Build SQL Query
         SqlCommand cmd = new SqlCommand(SQLStr, con);
 
-        // Build DataAdapter
         SqlDataAdapter ad = new SqlDataAdapter(cmd);
 
-        // Build DataSet to store the data
         DataSet ds = new DataSet();
 
-        // Get Data form DataBase into the DataSet
         ad.Fill(ds, tblName);
 
         return ds;
@@ -39,13 +30,10 @@ public static class Helper
 
     public static object GetScalar(string SQL)
     {
-        // התחברות למסד הנתונים
         SqlConnection con = new SqlConnection(conString);
 
-        // בניית פקודת SQL
         SqlCommand cmd = new SqlCommand(SQL, con);
 
-        // ביצוע השאילתא
         con.Open();
         object scalar = cmd.ExecuteScalar();
         con.Close();
@@ -55,24 +43,18 @@ public static class Helper
 
     public static int ExecuteNonQuery(string SQL)
     {
-        // התחברות למסד הנתונים
         SqlConnection con = new SqlConnection(conString);
 
-        // בניית פקודת SQL
         SqlCommand cmd = new SqlCommand(SQL, con);
 
-        // ביצוע השאילתא
         con.Open();
         int n = cmd.ExecuteNonQuery();
         con.Close();
 
-        // return the number of rows affected
         return n;
     }
 
     public static void Delete(string[] usernameToDelete)
-    // The Array "userIdToDelete" contain the id of the users to delete. 
-    // Delets all the users in the array "userIdToDelete".
     {
           
         string sql = String.Format("DELETE FROM {0} WHERE username = \'", Helper.tblName);
@@ -84,29 +66,19 @@ public static class Helper
     }
 
     public static int Update(string username, string password)
-    // The Method recieve a user objects. Find the user in the DataBase acording to his userId and update all the other properties in DB.
     {
-        // HttpRequest Request
-        // התחברות למסד הנתונים
         SqlConnection con = new SqlConnection(conString);
 
-        // בניית פקודת SQL
         string sql = "UPDATE " + Helper.tblName + " SET " + string.Format("password='{1}' WHERE username='{0}'", username, password);
-        //SqlCommand cmd = new SqlCommand(SQLStr, con);
         int n = ExecuteNonQuery(sql);
         return n;
     }
 
     public static int UpdateBestScores(string username, double cps, double wpm)
-    // The Method recieve a username and new scores. Update the user's best_CPS and best_WPM in DB only if the new value is greater than the stored one.
     {
-        // HttpRequest Request
-        // התחברות למסד הנתונים
         SqlConnection con = new SqlConnection(conString);
 
-        // בניית פקודת SQL
         string sql = "UPDATE " + Helper.tblName + " SET " + string.Format("best_CPS = CASE WHEN {1} > best_CPS THEN {1} ELSE best_CPS END, best_WPM = CASE WHEN {2} > best_WPM THEN {2} ELSE best_WPM END WHERE username='{0}'", username, cps, wpm);
-        //SqlCommand cmd = new SqlCommand(SQLStr, con);
         int n = ExecuteNonQuery(sql);
         return n;
     }
@@ -114,26 +86,17 @@ public static class Helper
 
 
     public static void Insert(User user)
-    // The Method recieve a user objects and insert it to the Database as new row. 
-    // The Method does't check if the user is already taken.
     {
-        //HttpRequest Request
-        // התחברות למסד הנתונים
-        //string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\gilad\source\repos\DBWeb\DBWeb\App_Data\Database.mdf;Integrated Security=True";
         SqlConnection con = new SqlConnection(conString);
 
-        // בניית פקודת SQL
         string SQLStr = String.Format("SELECT * FROM " + Helper.tblName + " WHERE 0=1");
         SqlCommand cmd = new SqlCommand(SQLStr, con);
 
-        // בניית DataSet
         DataSet ds = new DataSet();
 
-        // טעינת סכימת הנתונים
         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
         adapter.Fill(ds, Helper.tblName);
   
-        // בניית השורה להוספה
         DataRow dr = ds.Tables[Helper.tblName].NewRow();
         dr["username"] = user.GetUsername();
         dr["password"] = user.GetPassword();
@@ -152,34 +115,24 @@ public static class Helper
         dr["best_WPM"] = user.GetBestWPM();
         ds.Tables[Helper.tblName].Rows.Add(dr);
 
-        // עדכון הדאטה סט בבסיס הנתונים
         SqlCommandBuilder builder = new SqlCommandBuilder(adapter);
         adapter.UpdateCommand = builder.GetInsertCommand();
         adapter.Update(ds, tblName);
     }
 
     public static User GetRow(string username, string password)
-  //  The Method check if there is a user with userName and Password.
-    // If true the Method return a user with the first Name and Admin property.
-     //If not the Method return a user wuth first name "Visitor" and Admin = false
 
     {
-      //  התחברות למסד הנתונים
       SqlConnection con = new SqlConnection(conString);
 
-     //   בניית פקודת SQL
         string SQL = String.Format("SELECT * FROM " + Helper.tblName +
                 " WHERE username='{0}' AND password = '{1}'", username, password);
         SqlCommand cmd = new SqlCommand(SQL, con);
 
-     //   ביצוע השאילתא
         con.Open();
         SqlDataReader reader = cmd.ExecuteReader();
 
-      //  שימוש בנתונים שהתקבלו
        User user = new User();
-       // if (reader.HasRows)
-        //{
             reader.Read();
             user.SetUsername(reader.GetString(0));
             user.SetPassword(reader.GetString(1));
@@ -196,12 +149,6 @@ public static class Helper
         user.SetAdmin(reader.GetBoolean(12));
             user.SetBestCPS(reader.GetDouble(13));
             user.SetBestWPM(reader.GetDouble(14));
-      //  }
-      //  else
-      //  {
-          //  user.SetUsername("Guest");
-          //  user.SetAdmin(false);
-      //  }
         reader.Close();
         con.Close();
         return user;
@@ -211,7 +158,6 @@ public static class Helper
 
 
     public static string BuildUsersTable(DataTable dt)
-    // the Method Build HTML user Table with checkBoxes using the users in the DataTable dt.
     {
 
         string str = "<table border='1' class='usersTable' align='center'>";
@@ -253,8 +199,6 @@ public static class Helper
         return str;
     }
     public static string BuildLeaderboard(DataTable dt, string scoreColumn, string scoreHeader, string currentUsername)
-    // the Method Build HTML leaderboard Table using the users in the DataTable dt (already ordered by score).
-    // The row that belongs to the currentUsername gets the 'me-row' class so it can be highlighted.
     {
 
         string str = "<table border='1' class='usersTable' align='center'>";

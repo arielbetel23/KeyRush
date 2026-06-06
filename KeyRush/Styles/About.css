@@ -1,0 +1,159 @@
+.navbar .btn-logout { display: none !important; }
+
+.about-header {
+    text-align: center;
+    padding: 2.5rem 1.5rem 1rem;
+}
+.about-header h1 {
+    font-size: 2.6rem;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    letter-spacing: 0.01em;
+}
+.about-header .subtitle {
+    color: var(--muted);
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.step-card {
+    background: linear-gradient(160deg, var(--surface), var(--bg2));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.step-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--line-2);
+    box-shadow: 0 18px 50px rgba(255,122,20,.2);
+}
+.step-number {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.95rem;
+    color: var(--on-warm);
+}
+.step-card:nth-child(1) .step-number {
+    background: linear-gradient(140deg, var(--lime), #8fd400);
+    color: var(--on-lime);
+    box-shadow: 0 0 16px var(--glow-l);
+}
+.step-card:nth-child(1):hover { box-shadow: 0 18px 50px rgba(194,242,58,.18); }
+.step-card:nth-child(2) .step-number {
+    background: linear-gradient(140deg, var(--yellow), var(--orange));
+    box-shadow: 0 0 16px var(--glow-y);
+}
+.step-card:nth-child(3) .step-number {
+    background: linear-gradient(140deg, var(--orange), #b9540a);
+    box-shadow: 0 0 16px var(--glow-o);
+}
+.step-card h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.2rem;
+    color: var(--cream);
+}
+.step-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 1rem 0 0.5rem;
+    padding: 3.4rem 2.5rem;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(255,122,20,.14), rgba(194,242,58,.06));
+    border: 1px solid var(--line-2);
+    position: relative;
+    overflow: hidden;
+}
+.cta-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .3;
+    background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(0,0,0,.25) 3px 4px);
+}
+.cta-section h2 {
+    position: relative;
+    z-index: 1;
+    font-size: 1.6rem;
+    color: var(--cream);
+    text-shadow: 0 0 22px rgba(255,122,20,.4);
+}
+.cta-section .cta-subtitle {
+    position: relative;
+    z-index: 1;
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 520px;
+    margin: 0 auto 2rem;
+}
+.cta-actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+a.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Press Start 2P', monospace;
+    border-radius: 12px;
+    padding: 19px 30px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: 2px solid transparent;
+    transition: transform 0.16s, box-shadow 0.16s, background 0.16s, color 0.16s, border-color 0.16s;
+}
+a.cta-btn.primary {
+    background: linear-gradient(135deg, var(--orange), var(--yellow));
+    color: var(--on-warm);
+    box-shadow: 0 0 0 1px rgba(255,209,30,.5), 0 10px 34px var(--glow-o), inset 0 1px 0 rgba(255,255,255,.4);
+}
+a.cta-btn.primary:hover {
+    color: var(--on-warm);
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px rgba(255,209,30,.7), 0 16px 44px var(--glow-o);
+}
+a.cta-btn.secondary {
+    background: rgba(194,242,58,.06);
+    color: var(--lime);
+    border: 2px solid rgba(194,242,58,.45);
+}
+a.cta-btn.secondary:hover {
+    color: var(--lime);
+    text-decoration: none;
+    transform: translateY(-3px);
+    background: rgba(194,242,58,.12);
+    border-color: var(--lime);
+    box-shadow: 0 0 26px var(--glow-l);
+}
+
+@media (max-width: 720px) {
+    .about-header h1 { font-size: 2rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+}

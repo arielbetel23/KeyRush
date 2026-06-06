@@ -1,18 +1,14 @@
-// Typing (WPM) test logic. Loaded by Typing.aspx via <script src="../Scripts/Typing.js">.
-// Vanilla JS only. The page provides the WORDS array and SUBMIT_URL, then calls initTyping().
 
 let wordList = [];
 let currentIndex = 0;
 let correctCount = 0;
 let started = false;
-let selectedSeconds = 30; // default: 30 seconds
+let selectedSeconds = 30;
 let timeLeft = 0;
 let timerInterval;
 
-const WINDOW = 40; // how many upcoming words to show in the display
+const WINDOW = 40;
 
-// Called from the page once WORDS has been serialized in. Wires up the input
-// and paints the initial word stream.
 function initTyping() {
     wordList = WORDS;
     currentIndex = 0;
@@ -22,8 +18,6 @@ function initTyping() {
     renderWords();
 }
 
-// Called by the duration buttons. Records the chosen duration and moves the
-// "active" highlight to the clicked button. Ignored while a test is running.
 function selectDuration(seconds, btn) {
     if (started) return;
     selectedSeconds = seconds;
@@ -42,7 +36,6 @@ function setSelectorDisabled(disabled) {
     }
 }
 
-// Paint a window of upcoming words, highlighting the current one.
 function renderWords() {
     let html = "";
     let end = Math.min(currentIndex + WINDOW, wordList.length);
@@ -90,7 +83,6 @@ function updateTimer() {
     document.getElementById('timer').innerHTML = timeLeft + "s";
 }
 
-// Count a word only when the user presses space and the typed word matches exactly.
 function handleKey(e) {
     if (!started) return;
     if (e.key === ' ' || e.keyCode === 32) {
@@ -128,8 +120,6 @@ function endTest() {
     submitScore(wpm);
 }
 
-// Send the score to the server. The server replies "true" when it is a new
-// personal best, which reveals the congratulations message.
 function submitScore(wpm) {
     fetch(SUBMIT_URL + "?ajax=submitScore&wpm=" + wpm)
         .then(function (response) { return response.text(); })
@@ -138,7 +128,7 @@ function submitScore(wpm) {
                 document.getElementById('congrats').hidden = false;
             }
         })
-        .catch(function () { /* ignore network errors */ });
+        .catch(function () { });
 }
 
 function tryAgain() {

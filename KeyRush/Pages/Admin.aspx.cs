@@ -16,7 +16,7 @@ public partial class pages_admin : System.Web.UI.Page
     {
         string sql = BuildSQL("");
         DataSet ds = Helper.RetrieveTable(sql);
-        DataTable users = ds.Tables[Helper.tblName];    // ds.Tables[0]
+        DataTable users = ds.Tables[Helper.tblName];
         string table = Helper.BuildUsersTable(users);
         showUsersTable.InnerHtml = table;
     }
@@ -36,7 +36,7 @@ public partial class pages_admin : System.Web.UI.Page
         string username = Request.Form["searchName"];
         string sql = BuildSQL(username);
         DataSet ds = Helper.RetrieveTable(sql);
-        DataTable users = ds.Tables["users"];    // ds.Tables[0]
+        DataTable users = ds.Tables["users"];
         string table = Helper.BuildUsersTable(users);
         showUsersTable.InnerHtml = table;
     }
@@ -50,7 +50,7 @@ public partial class pages_admin : System.Web.UI.Page
         {
             string sql = BuildSQL(columnName, sort);
             DataSet ds = Helper.RetrieveTable(sql);
-            DataTable users = ds.Tables["users"];    // ds.Tables[0]
+            DataTable users = ds.Tables["users"];
             string table = Helper.BuildUsersTable(users);
             showUsersTable.InnerHtml = table;
         }

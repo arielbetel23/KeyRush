@@ -6,19 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signing out — GameZone</title>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: #0f1117;
-            color: #e2e8f0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="../Styles/Logout.css" />
 </head>
 <body>
     <form id="form1" runat="server">

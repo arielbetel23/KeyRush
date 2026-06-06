@@ -3,25 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <link href="../Styles/General.css" rel="stylesheet" />
-    <style>
-        input[type="text"], select {
-            background: #252840;
-            border: 1px solid #2d3148;
-            color: #e2e8f0;
-            border-radius: 8px;
-            padding: 0.5rem 0.9rem;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        input[type="text"]:focus, select:focus {
-            border-color: #6c63ff;
-            box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
-        }
-        select option { background: #252840; }
-        input[type="radio"] { accent-color: #6c63ff; margin: 0 4px; }
-        label { color: #94a3b8; font-size: 0.85rem; }
-    </style>
+    <link href="../Styles/Admin.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">

@@ -1,13 +1,9 @@
-// CPS test logic. Loaded by CPS.aspx via <script src="../Scripts/CPS.js">.
-// Original click-counting + timer behaviour, plus a duration selector.
 
 let counter = 0;
 let started = false;
 let timeout;
-let selectedDuration = 5000; // default: 5 seconds
+let selectedDuration = 5000;
 
-// Called by the duration buttons. Records the chosen duration and moves the
-// "active" highlight to the clicked button. Ignored while a test is running.
 function selectDuration(ms, btn) {
     if (started) return;
     selectedDuration = ms;
@@ -57,8 +53,6 @@ function endCPS() {
     submitScore(cpsScore);
 }
 
-// Send the score to the server. The server replies "true" when it is a new
-// personal best, which reveals the congratulations message.
 function submitScore(cps) {
     fetch(SUBMIT_URL + "?ajax=submitScore&cps=" + cps)
         .then(function (response) { return response.text(); })
@@ -67,7 +61,7 @@ function submitScore(cps) {
                 document.getElementById('congrats').hidden = false;
             }
         })
-        .catch(function () { /* ignore network errors */ });
+        .catch(function () { });
 }
 
 function restart() {

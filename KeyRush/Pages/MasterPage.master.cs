@@ -9,9 +9,5 @@ public partial class KeyRush_Pages_MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if ((string)Session["username"] == "Guest")
-        //{
-        //    Response.Redirect("About.aspx"); 
-        //}
     }
 }

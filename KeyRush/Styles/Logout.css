@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #120c06;
+    color: #fdf3e2;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(900px 600px at 50% 50%, rgba(255,122,20,.16), transparent 58%);
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .35;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,.22) 3px, rgba(0,0,0,0) 4px);
+    mix-blend-mode: multiply;
+}
+
+form#form1 > div {
+    position: relative;
+    z-index: 1;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #ff7a14;
+    text-shadow: 0 0 24px color-mix(in srgb, #ff7a14 54%, transparent);
+    letter-spacing: 0.04em;
+    animation: logout-blink 1.4s steps(2) infinite;
+}
+@keyframes logout-blink { 50% { opacity: .4; } }
+
+@media (prefers-reduced-motion: reduce) {
+    form#form1 > div { animation: none; }
+}

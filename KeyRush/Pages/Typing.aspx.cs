@@ -10,8 +10,6 @@ using System.Data.SqlClient;
 
 public partial class KeyRush_Pages_Typing : System.Web.UI.Page
 {
-    // A large pool of common English words. A shuffled selection is serialized to
-    // the page so the typing test runs entirely client-side.
     static string[] words = {
         "the","of","and","to","in","is","you","that","it","he","was","for","on","are","as","with","his","they","at",
         "be","this","have","from","or","one","had","by","word","but","not","what","all","were","we","when","your","can",
@@ -35,7 +33,6 @@ public partial class KeyRush_Pages_Typing : System.Web.UI.Page
             Response.Redirect("About.aspx");
         }
 
-        // Handle the client-side score submission (AJAX) before any HTML is rendered.
         if (Request.QueryString["ajax"] == "submitScore")
         {
             SubmitScore();
@@ -47,8 +44,6 @@ public partial class KeyRush_Pages_Typing : System.Web.UI.Page
     }
 
     public void SubmitScore()
-    // Receives the WPM result from the client, updates the record if it is a new
-    // personal best, and writes back "true"/"false" so the page can congratulate.
     {
         string username = (string)Session["username"];
         double wpm = Convert.ToDouble(Request.QueryString["wpm"]);
@@ -65,17 +60,15 @@ public partial class KeyRush_Pages_Typing : System.Web.UI.Page
     }
 
     public void ShowLeaderboard()
-    // Query the top 10 users by best_WPM and build the leaderboard table.
     {
         string sql = "SELECT TOP 10 username, best_WPM FROM " + Helper.tblName + " ORDER BY best_WPM DESC";
         DataSet ds = Helper.RetrieveTable(sql);
-        DataTable users = ds.Tables[Helper.tblName];    // ds.Tables[0]
+        DataTable users = ds.Tables[Helper.tblName];
         string table = Helper.BuildLeaderboard(users, "best_WPM", "Best WPM", (string)Session["username"]);
         leaderboard.InnerHtml = table;
     }
 
     public int GetUserRank(string username)
-    // The rank of the user = how many users have a higher best_WPM, plus one.
     {
         string sql = "SELECT COUNT(*) FROM " + Helper.tblName +
                 " WHERE best_WPM > (SELECT best_WPM FROM " + Helper.tblName + " WHERE username = '" + username + "')";
@@ -84,7 +77,6 @@ public partial class KeyRush_Pages_Typing : System.Web.UI.Page
     }
 
     public void ShowMyRank()
-    // Show the current user's rank and score, even if they are not in the top 10.
     {
         string username = (string)Session["username"];
         int rank = GetUserRank(username);
@@ -94,7 +86,6 @@ public partial class KeyRush_Pages_Typing : System.Web.UI.Page
     }
 
     public string GetWordsJs()
-    // Serialize a shuffled selection of the word pool as a JavaScript array literal.
     {
         Random rnd = new Random();
         string[] shuffled = words.OrderBy(w => rnd.Next()).ToArray();

@@ -10,8 +10,6 @@ public partial class KeyRush_Pages_EditUser : System.Web.UI.Page
    
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if ((string)Session["username"] == "Guest")
-        //    Response.Redirect("About.aspx");
     }
 
     public bool Authentication(string username, string password)
@@ -33,7 +31,6 @@ public partial class KeyRush_Pages_EditUser : System.Web.UI.Page
         }
         sql = sql.Substring(0, sql.Length - 1) + " WHERE username=\'" + arr[0] + "\'";
         int n = Helper.ExecuteNonQuery(sql);
-        //Response.Write("Rows updated = " + n + "<br />");
         if (n > 0)
             Response.Write("User has been updated succesfully");
     }
