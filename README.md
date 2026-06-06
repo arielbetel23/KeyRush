@@ -95,7 +95,7 @@ The redesign involved:
 
 | Page | Description |
 |---|---|
-| `Default.aspx` | Homepage — hero section, feature cards, personal stats (when signed in) |
+| `Homepage.aspx` | Homepage — hero section, feature cards, personal stats (when signed in) |
 | `Typing.aspx` | Typing speed test with timer, word display, results, and leaderboard |
 | `CPS.aspx` | Click speed test with live counter, results, and leaderboard |
 | `About.aspx` | Platform info and how it works |
