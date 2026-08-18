@@ -14,8 +14,10 @@ public partial class KeyRush_Pages_Signin2 : System.Web.UI.Page
     {
         string username = Request.Form["txtUsername"];
         string password = Request.Form["txtPassword"];
-        string sql = "SELECT * FROM users WHERE username = '" + username + "'" + " AND password = '" + password + "'";
-        if (Helper.GetScalar(sql) != null)
+        string sql = "SELECT * FROM users WHERE username = @username AND password = @password";
+        if (Helper.GetScalar(sql,
+                new SqlParameter("@username", username),
+                new SqlParameter("@password", password)) != null)
         {
             User user = Helper.GetRow(username, password);
             Session["admin"] = user.GetAdmin();

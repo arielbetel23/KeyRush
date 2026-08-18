@@ -13,11 +13,17 @@ public static class Helper
                                     + DBName + ";Integrated Security=True";
 
 
-    public static DataSet RetrieveTable(string SQLStr)
+    // `parameters` is optional (via `params`), so every existing call site that
+    // passes a bare SQL string still compiles and runs unchanged. Callers that
+    // build a query from user input should switch to @-placeholders and pass
+    // the values here instead of concatenating them into the SQL string.
+    public static DataSet RetrieveTable(string SQLStr, params SqlParameter[] parameters)
     {
         SqlConnection con = new SqlConnection(conString);
 
         SqlCommand cmd = new SqlCommand(SQLStr, con);
+        if (parameters != null && parameters.Length > 0)
+            cmd.Parameters.AddRange(parameters);
 
         SqlDataAdapter ad = new SqlDataAdapter(cmd);
 
@@ -28,24 +34,28 @@ public static class Helper
         return ds;
     }
 
-    public static object GetScalar(string SQL)
+    public static object GetScalar(string SQL, params SqlParameter[] parameters)
     {
         SqlConnection con = new SqlConnection(conString);
 
         SqlCommand cmd = new SqlCommand(SQL, con);
+        if (parameters != null && parameters.Length > 0)
+            cmd.Parameters.AddRange(parameters);
 
         con.Open();
         object scalar = cmd.ExecuteScalar();
         con.Close();
-        
+
         return scalar;
     }
 
-    public static int ExecuteNonQuery(string SQL)
+    public static int ExecuteNonQuery(string SQL, params SqlParameter[] parameters)
     {
         SqlConnection con = new SqlConnection(conString);
 
         SqlCommand cmd = new SqlCommand(SQL, con);
+        if (parameters != null && parameters.Length > 0)
+            cmd.Parameters.AddRange(parameters);
 
         con.Open();
         int n = cmd.ExecuteNonQuery();
@@ -56,30 +66,33 @@ public static class Helper
 
     public static void Delete(string[] usernameToDelete)
     {
-          
-        string sql = String.Format("DELETE FROM {0} WHERE username = \'", Helper.tblName);
+        string sql = String.Format("DELETE FROM {0} WHERE username = @username", Helper.tblName);
 
         for (int i = 0; i < usernameToDelete.Length; i++)
         {
-            ExecuteNonQuery(sql + usernameToDelete[i] + "\'");
+            ExecuteNonQuery(sql, new SqlParameter("@username", usernameToDelete[i]));
         }
     }
 
     public static int Update(string username, string password)
     {
-        SqlConnection con = new SqlConnection(conString);
-
-        string sql = "UPDATE " + Helper.tblName + " SET " + string.Format("password='{1}' WHERE username='{0}'", username, password);
-        int n = ExecuteNonQuery(sql);
+        string sql = "UPDATE " + Helper.tblName + " SET password = @password WHERE username = @username";
+        int n = ExecuteNonQuery(sql,
+            new SqlParameter("@password", password),
+            new SqlParameter("@username", username));
         return n;
     }
 
     public static int UpdateBestScores(string username, double cps, double wpm)
     {
-        SqlConnection con = new SqlConnection(conString);
-
-        string sql = "UPDATE " + Helper.tblName + " SET " + string.Format("best_CPS = CASE WHEN {1} > best_CPS THEN {1} ELSE best_CPS END, best_WPM = CASE WHEN {2} > best_WPM THEN {2} ELSE best_WPM END WHERE username='{0}'", username, cps, wpm);
-        int n = ExecuteNonQuery(sql);
+        string sql = "UPDATE " + Helper.tblName + " SET " +
+            "best_CPS = CASE WHEN @cps > best_CPS THEN @cps ELSE best_CPS END, " +
+            "best_WPM = CASE WHEN @wpm > best_WPM THEN @wpm ELSE best_WPM END " +
+            "WHERE username = @username";
+        int n = ExecuteNonQuery(sql,
+            new SqlParameter("@cps", cps),
+            new SqlParameter("@wpm", wpm),
+            new SqlParameter("@username", username));
         return n;
     }
 
@@ -125,9 +138,10 @@ public static class Helper
     {
       SqlConnection con = new SqlConnection(conString);
 
-        string SQL = String.Format("SELECT * FROM " + Helper.tblName +
-                " WHERE username='{0}' AND password = '{1}'", username, password);
+        string SQL = "SELECT * FROM " + Helper.tblName + " WHERE username = @username AND password = @password";
         SqlCommand cmd = new SqlCommand(SQL, con);
+        cmd.Parameters.AddWithValue("@username", username);
+        cmd.Parameters.AddWithValue("@password", password);
 
         con.Open();
         SqlDataReader reader = cmd.ExecuteReader();
