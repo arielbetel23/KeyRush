@@ -13,10 +13,6 @@ public static class Helper
                                     + DBName + ";Integrated Security=True";
 
 
-    // `parameters` is optional (via `params`), so every existing call site that
-    // passes a bare SQL string still compiles and runs unchanged. Callers that
-    // build a query from user input should switch to @-placeholders and pass
-    // the values here instead of concatenating them into the SQL string.
     public static DataSet RetrieveTable(string SQLStr, params SqlParameter[] parameters)
     {
         SqlConnection con = new SqlConnection(conString);

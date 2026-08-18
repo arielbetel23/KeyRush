@@ -1,8 +1,3 @@
-/* Single shared stylesheet for every auth-style form page:
-   Sign In, Sign Up, Forgot Password. All three link only to this file.
-   Pages that need a different card width use an inline style override on
-   .auth-wrapper (see Signup.aspx) rather than a separate CSS file. */
-
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {

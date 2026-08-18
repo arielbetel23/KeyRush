@@ -1,4 +1,3 @@
-
 let counter = 0;
 let started = false;
 let timeout;

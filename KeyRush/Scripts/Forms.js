@@ -1,19 +1,9 @@
-// Shared client-side validation for every form page: Sign In, Sign Up,
-// Forgot Password, and Edit Profile. All four link only to this file.
-//
-// The *value validators (validatePasswordValue, validateEmailValue,
-// validatePhoneValue) hold the actual rules once. Each page calls a thin
-// wrapper that reads its own field/error ids and, on Edit Profile, only
-// validates when the (optional) field was actually filled in.
-
 function styleError(error) {
     error.style.color = "red";
     error.style.fontFamily = "Time New Roman";
     error.style.fontSize = "12px";
     error.innerHTML = "";
 }
-
-// ---------- Password ----------
 
 function validatePasswordValue(pass, error) {
     if (pass.length == 0) {
@@ -80,7 +70,6 @@ function validatePasswordValue(pass, error) {
     return true;
 }
 
-// Sign In / Sign Up / Forgot Password — password is always required.
 function checkPassword() {
     var pass = document.getElementById("txtPassword").value;
     var error = document.getElementById("passwordError");
@@ -88,7 +77,6 @@ function checkPassword() {
     return validatePasswordValue(pass, error);
 }
 
-// Edit Profile — current password, always required.
 function checkOldPass() {
     let pass = document.getElementById("oldPassword").value;
     let error = document.getElementById("oldpasswordError");
@@ -96,7 +84,6 @@ function checkOldPass() {
     return validatePasswordValue(pass, error);
 }
 
-// Edit Profile — new password is optional; only validated if filled in.
 function zeroNewPass() {
     let pass = document.getElementById("newPassword").value;
     let error = document.getElementById("newpasserror");
@@ -132,8 +119,6 @@ function checkConfirmPassword() {
     }
     return true;
 }
-
-// ---------- Email ----------
 
 function validateEmailValue(email, error) {
     if (email.length == 0) {
@@ -172,7 +157,6 @@ function validateEmailValue(email, error) {
     return true;
 }
 
-// Sign Up — email is always required.
 function checkEmail() {
     var email = document.getElementById("email").value;
     var emailError = document.getElementById("emailError");
@@ -180,7 +164,6 @@ function checkEmail() {
     return validateEmailValue(email, emailError);
 }
 
-// Edit Profile — email is optional; only validated if filled in.
 function ZeroEmail() {
     let email = document.getElementById("email").value;
     if (email.length == 0) {
@@ -197,8 +180,6 @@ function checkNewEmail() {
         return validateEmailValue(email, emailError);
     }
 }
-
-// ---------- Phone number ----------
 
 function validatePhoneValue(phone, error) {
     if (phone.length === 0) {
@@ -236,7 +217,6 @@ function validatePhoneValue(phone, error) {
     return true;
 }
 
-// Sign Up — phone number is always required.
 function checkPhoneNumber() {
     var phone = document.getElementById("phonenumber").value;
     var error = document.getElementById("phoneError");
@@ -244,7 +224,6 @@ function checkPhoneNumber() {
     return validatePhoneValue(phone, error);
 }
 
-// Edit Profile — phone number is optional; only validated if filled in.
 function ZeroPhoneNum() {
     let phone = document.getElementById("phonenumber").value;
     if (phone.length == 0) {
@@ -261,8 +240,6 @@ function checkNewPhoneNum() {
         return validatePhoneValue(phone, error);
     }
 }
-
-// ---------- Sign Up only ----------
 
 function checkUserName() {
     var username = document.getElementById("txtUsername").value;
@@ -361,8 +338,6 @@ function checkBirth() {
     return true;
 }
 
-// ---------- Sign Up + Forgot Password (security questions) ----------
-
 function firstAnswerCheck() {
     let answer = document.getElementById("answer1").value;
     let error = document.getElementById("answer1error");
@@ -392,8 +367,6 @@ function secondAnswerCheck() {
     }
     return true;
 }
-
-// ---------- Per-page submit orchestrators ----------
 
 function forgotPass() {
     let check = true;
