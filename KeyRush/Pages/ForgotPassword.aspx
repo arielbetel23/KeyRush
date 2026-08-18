@@ -8,8 +8,8 @@
     <title>Forgot Password — GameZone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="../Styles/Signin.css" />
-    <script type="text/javascript" src="../Scripts/SignUp.js"></script>
+    <link rel="stylesheet" href="../Styles/Auth.css" />
+    <script type="text/javascript" src="../Scripts/Forms.js"></script>
 </head>
 <body>
     <div class="auth-wrapper" style="max-width:500px;">

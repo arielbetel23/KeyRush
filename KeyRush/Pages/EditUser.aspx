@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
     <link href="../Styles/General.css" rel="stylesheet" />
-    <script type="text/javascript" src="../Scripts/EditUser.js"></script>
+    <script type="text/javascript" src="../Scripts/Forms.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -64,5 +64,4 @@
     </div>
 
 </div>
-<script type="text/javascript" src="../Scripts/EditUser.js"></script>
 </asp:Content>

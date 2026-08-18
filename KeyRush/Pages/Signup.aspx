@@ -8,10 +8,10 @@
     <title>Register — GameZone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="../Styles/Signup.css" />
+    <link rel="stylesheet" href="../Styles/Auth.css" />
 </head>
 <body>
-    <div class="signup-wrapper">
+    <div class="auth-wrapper" style="max-width:540px; padding:1rem 1.5rem 3rem;">
         <div class="auth-card">
             <h1 class="auth-title">Create Account</h1>
             <p class="auth-subtitle">Join GameZone — it's free</p>
@@ -23,17 +23,17 @@
                 <div class="form-group">
                     <label for="txtUsername">Username</label>
                     <input type="text" name="txtUsername" id="txtUsername" oninput="return checkUserName();" placeholder="Choose a username" />
-                    <div id="usernameError" class="error"></div>
+                    <div id="usernameError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="txtPassword">Password</label>
                     <input type="password" name="txtPassword" id="txtPassword" oninput="return checkPassword();" placeholder="Create a password" />
-                    <div id="passwordError" class="error"></div>
+                    <div id="passwordError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="txtVerifyPassword">Confirm Password</label>
                     <input type="password" name="txtVerifyPassword" id="txtVerifyPassword" oninput="checkConfirmPassword();" placeholder="Repeat your password" />
-                    <div id="confirmError" class="error"></div>
+                    <div id="confirmError" class="error-text"></div>
                 </div>
 
                 <div class="form-section-label">Personal Info</div>
@@ -41,27 +41,27 @@
                 <div class="form-group">
                     <label for="txtFirstname">First Name</label>
                     <input type="text" name="txtFirstname" id="txtFirstname" oninput="return checkFirstname();" placeholder="First name" />
-                    <div id="firstnamError" class="error"></div>
+                    <div id="firstnamError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="txtLastname">Last Name</label>
                     <input type="text" name="txtLastname" id="txtLastname" oninput="return checkLastname();" placeholder="Last name" />
-                    <div id="lastnamError" class="error"></div>
+                    <div id="lastnamError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="birth">Birthdate</label>
                     <input type="date" name="birthdate" id="birth" oninput="return checkBirth();" />
-                    <div id="birthError" class="error"></div>
+                    <div id="birthError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" name="email" id="email" oninput="return checkEmail();" placeholder="your@email.com" />
-                    <div id="emailError" class="error"></div>
+                    <div id="emailError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label for="phonenumber">Phone Number</label>
                     <input type="text" name="phonenumber" id="phonenumber" oninput="return checkPhoneNumber();" placeholder="+1 555 000 0000" />
-                    <div id="phoneError" class="error"></div>
+                    <div id="phoneError" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label>Gender (optional)</label>
@@ -81,7 +81,7 @@
                         <option value="3">What is your favorite sport?</option>
                     </select>
                     <input type="text" name="answer1" id="answer1" oninput="return firstAnswerCheck();" placeholder="Your answer" style="margin-top:0.5rem;" />
-                    <div id="answer1error" class="error"></div>
+                    <div id="answer1error" class="error-text"></div>
                 </div>
                 <div class="form-group">
                     <label>Question 2</label>
@@ -91,7 +91,7 @@
                         <option value="3">What is your favorite soccer team?</option>
                     </select>
                     <input type="text" name="answer2" id="answer2" oninput="return secondAnswerCheck();" placeholder="Your answer" style="margin-top:0.5rem;" />
-                    <div id="secondanswererror" class="error"></div>
+                    <div id="secondanswererror" class="error-text"></div>
                 </div>
 
                 <button type="submit" name="submit" id="submit" onclick="return signUp();" class="btn-primary-auth">Create Account</button>
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="../Scripts/SignUp.js"></script>
+    <script type="text/javascript" src="../Scripts/Forms.js"></script>
     <%
         if (Request.Form["submit"] != null)
         {
